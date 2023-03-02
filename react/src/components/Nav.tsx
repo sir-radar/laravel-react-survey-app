@@ -14,12 +14,12 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Nav() {
-  const { user } = useAppState();
-  console.log(user);
-  const logout = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-  };
+interface Props {
+  user: { name?: string; email?: string };
+  logout: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
+export default function Nav({ user, logout }: Props) {
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
