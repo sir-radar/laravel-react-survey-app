@@ -5,9 +5,9 @@ export interface contextInterface {
     name?: string;
     email?: string;
   };
-  setUser?: (user: any) => void;
+  setUser: (user: any) => void;
   userToken?: string;
-  persistUserToken?: (userToken: any) => void;
+  persistUserToken: (userToken: any) => void;
   surveys: Survey[];
   questionTypes: string[];
   toast: {

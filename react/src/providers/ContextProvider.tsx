@@ -192,11 +192,13 @@ export const StateContext = createContext<contextInterface>({
     show: false,
   },
   showToast: () => {},
+  setUser: () => {},
+  persistUserToken: () => {},
 });
 
 export const ContextProvider = ({ children }: providerProps) => {
   const [user, setUser] = useState({});
-  const [userToken, setUserToken] = useState("123");
+  const [userToken, setUserToken] = useState("");
   const [surveys, setSurveys] = useState(tmpSurveys);
   const [questionTypes] = useState([
     "text",
