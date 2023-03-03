@@ -83,11 +83,11 @@ export default function Dashboard() {
                 </div>
                 <div className="flex justify-between text-sm mb-1">
                   <div>Questions:</div>
-                  <div>{data.latestSurvey.questions.length}</div>
+                  <div>{data.latestSurvey.questions?.length}</div>
                 </div>
                 <div className="flex justify-between text-sm mb-3">
                   <div>Answers:</div>
-                  <div>{data.latestSurvey.answers}</div>
+                  <div>{data.latestSurvey?.answers}</div>
                 </div>
                 <div className="flex justify-between">
                   <TButton to={`/surveys/${data.latestSurvey.id}`} link>
@@ -113,7 +113,7 @@ export default function Dashboard() {
             className="order-4 lg:order-3 row-span-2"
             style={{ animationDelay: "0.3s" }}
           >
-            {data.latestAnswers.length && (
+            {data.latestAnswers?.length && (
               <div className="text-left">
                 {data.latestAnswers.map((answer: any) => (
                   <a
@@ -130,7 +130,7 @@ export default function Dashboard() {
                 ))}
               </div>
             )}
-            {!data.latestAnswers.length && (
+            {!data.latestAnswers?.length && (
               <div className="text-gray-600 text-center py-16">
                 Your don't have answers yet
               </div>
