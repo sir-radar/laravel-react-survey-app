@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     public function signup (SignupRequest $request){
-        $data = $request->validate();
+        // dd($request);
+        $data = $request->validated();
 
         $user = User::create([
             'name' => $data['name'],
@@ -28,7 +29,7 @@ class AuthController extends Controller
     }
 
     public function login(LoginRequest $request){
-        $credentials = $request->validate();
+        $credentials = $request->validated();
         $remember = $credentials['remember'] ?? false;
         unset( $credentials['remember']);
 
