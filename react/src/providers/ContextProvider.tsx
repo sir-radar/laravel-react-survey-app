@@ -182,6 +182,8 @@ const tmpSurveys = [
   },
 ];
 
+const STORED_TOKEN = localStorage.getItem("TOKEN");
+
 export const StateContext = createContext<contextInterface>({
   user: {},
   userToken: "",
@@ -198,7 +200,7 @@ export const StateContext = createContext<contextInterface>({
 
 export const ContextProvider = ({ children }: providerProps) => {
   const [user, setUser] = useState({});
-  const [userToken, setUserToken] = useState("");
+  const [userToken, setUserToken] = useState(STORED_TOKEN || "");
   const [surveys, setSurveys] = useState(tmpSurveys);
   const [questionTypes] = useState([
     "text",
