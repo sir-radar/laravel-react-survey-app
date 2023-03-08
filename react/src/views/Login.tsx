@@ -1,6 +1,7 @@
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axiosClient from "../axios";
 // import axiosClient from "../axios";
 import useAppState from "../hooks/useAppState";
 
@@ -14,26 +15,25 @@ export default function Login() {
     ev.preventDefault();
     setError({ __html: "" });
 
-    //   axiosClient
-    //     .post("/login", {
-    //       email,
-    //       password,
-    //     })
-    //     .then(({ data }) => {
-    //       setCurrentUser(data.user);
-    //       setUserToken(data.token);
-    //     })
-    //     .catch((error) => {
-    //       if (error.response) {
-    //         const finalErrors = Object.values(error.response.data.errors).reduce(
-    //           (accum, next) => [...accum, ...next],
-    //           []
-    //         );
-    //         setError({ __html: finalErrors.join("<br>") });
-    //       }
-    //       console.error(error);
-    //     });
-    // };
+    axiosClient
+      .post("/login", {
+        email,
+        password,
+      })
+      .then(({ data }) => {
+        setUser(data.user);
+        persistUserToken(data.token);
+      })
+      .catch((error) => {
+        if (error.response) {
+          const finalErrors = Object.values(error.response.data.errors).reduce(
+            (accum: any, next: any) => [...accum, ...next],
+            []
+          ) as any;
+          setError({ __html: finalErrors.join("<br>") });
+        }
+        console.error(error);
+      });
   };
 
   return (
