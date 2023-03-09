@@ -49,10 +49,10 @@ export default function SurveyView() {
     ev.preventDefault();
 
     const payload = { ...survey };
-    // if (payload.image) {
-    //   payload.image = payload.image_url;
-    // }
-    // delete payload.image_url;
+    if (payload.image) {
+      payload.image = payload.image_url;
+    }
+    delete payload.image_url;
     let res = null;
     if (id) {
       res = axiosClient.put(`/survey/${id}`, payload);
@@ -62,7 +62,6 @@ export default function SurveyView() {
 
     res
       .then((res) => {
-        console.log(res);
         navigate("/surveys");
         if (id) {
           showToast("The survey was updated");
@@ -74,7 +73,6 @@ export default function SurveyView() {
         if (err && err.response) {
           setError(err.response.data.message);
         }
-        console.log(err, err.response);
       });
   };
 
